@@ -22,7 +22,7 @@ public class task2 {
         }
 
         // Calculating Average Percentage
-         float AvgPercent = (float) TotalMarks/NumOfSubject;
+         double AvgPercent = TotalMarks/NumOfSubject;
 
         // simplifying Grade Category
         int GradeCategory = (int) AvgPercent/10;
