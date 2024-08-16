@@ -1,5 +1,5 @@
 import java.sql.SQLOutput;
-import java.util.*;
+import java.util.Scanner;
 
 public class task3 {
         public static void main(String[] args) {
