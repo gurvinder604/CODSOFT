@@ -31,7 +31,7 @@ class ATM {
         Scanner Input = new Scanner(System.in);
         int EntChoice = Input.nextInt();
 
-        // Running methods as per user input
+        // Running methods as per users input
          switch (EntChoice) {
              case 1:
                  CheckBal();
