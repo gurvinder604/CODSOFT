@@ -1,81 +1,105 @@
-import java.nio.file.LinkPermission;
-import java.util.Scanner;
+import java.sql.SQLOutput;
+import java.util.*;
 
 public class task3 {
         public static void main(String[] args) {
             //Implementing all methods here
 
             ATM obj = new ATM();
-            obj.MenuInterface();
+            obj.AtmMenu();
 
         }
 }
 
 // Creating class ATM and defining methods in it
 class ATM {
-    public void MenuInterface() {
-        System.out.println("ATM Menu");
+    float AmtBalance = 10000.0f;
+
+    public void AtmMenu() {
+
+        // Displaying the menu
+        System.out.println("ATM Machine");
         System.out.println("1. Check Balance");
         System.out.println("2. Withdraw");
         System.out.println("3. Deposit");
         System.out.println("4. Exit");
 
-    }
-
-    double AmtBalance;
-
-    public void Start() {
+        // Taking user choice
+        System.out.print("Please enter your choice: ");
         Scanner Input = new Scanner(System.in);
-        int Option = Input.nextInt();
+        int EntChoice = Input.nextInt();
 
-        do {
-            MenuInterface();
+        // Running methods as per user input
+         switch (EntChoice) {
+             case 1:
+                 CheckBal();
+                 break;
+             case 2:
+                 Withdraw();
+                 break;
+             case 3:
+                 Deposit();
+                 break;
+             case 4:
+                 System.out.println("Thanks for using our services :) ");
+                 return;
 
-            switch (Option) {
-                case 1:
-                    CheckBalance();
-                    break;
-                case 2:
-                    PerformWithdraw(Input);
-                    break;
-                case 3:
-                    PerformDeposit(Input);
-                    break;
-                case 4:
-                    System.out.println("Exiting the ATM,Thanks for using our services.");
-                    break;
-
-                default:
-                    System.out.println("Invalid Data, Please try again.");
-            }
-        } while (Option != 4);
-
-        Input.close();
+             default:
+                 System.out.println("-------------------------");
+                 System.out.println("     Invalid Choice");
+                 System.out.println("-------------------------");
+         }
     }
 
-    public void CheckBalance() {
-        System.out.println("Your current balance is: " + AmtBalance);
-        MenuInterface();
+    public void CheckBal() {
+        System.out.println("----------------------------------------");
+        System.out.println("  Available Funds: " + AmtBalance);
+        System.out.println("----------------------------------------");
+
+        AtmMenu();
     }
 
-    public void PerformWithdraw(Scanner Input) {
-        System.out.print("Enter amount to be Withdrawn: ");
-        double amount = Input.nextDouble();
+    public void Withdraw() {
+        System.out.println("Available Funds " + AmtBalance);
+        System.out.print("Please enter the amount you want to withdraw: ");
+        Scanner Input = new Scanner(System.in);
+        float AmtWithdrawn = Input.nextFloat();
 
-        if (amount > AmtBalance) {
-            System.out.println("Insufficient Balance,/n Available Balance is: " + AmtBalance);
-        } else {
-            AmtBalance = AmtBalance - amount;
-            System.out.println("Funds withdrawn successfully.");
+        if (AmtWithdrawn<AmtBalance) {
+            AmtBalance = AmtBalance - AmtWithdrawn;
+            System.out.println("-----------------------------------------------------");
+            System.out.println("   Funds Withdrawn, Available Funds: " + AmtBalance);
+            System.out.println("------------------------------------------------------");
+
+
         }
+        else {
+            System.out.println("Insufficient Balance !!!");
+            Withdraw();
+
+        }
+        AtmMenu();
+
     }
 
-    public void PerformDeposit(Scanner Input) {
-        System.out.print("Enter the amount of money to be deposited: ");
-        float amount = Input.nextFloat();
-        AmtBalance = AmtBalance + amount;
-        System.out.println("Funds deposited successfully.");
+    public void Deposit() {
+        System.out.print("PLease enter the amount need to be Deposit: ");
+        Scanner Input = new Scanner(System.in);
+        float AmtDeposit = Input.nextFloat();
 
+        if (AmtDeposit >= 0) {
+            AmtBalance += AmtDeposit;
+            System.out.println("------------------------------------------------------");
+            System.out.println("   Funds deposited successfully, Available Funds now: " + AmtBalance);
+            System.out.println("------------------------------------------------------");
 
+        }
+        else {
+            System.out.println("Please enter valid amount !!!");
+        }
+        AtmMenu();
     }
 }
+
+
+
