@@ -5,8 +5,9 @@ public class task3 {
         public static void main(String[] args) {
             //Implementing all methods here
 
+            // Making clas ATM an object
             ATM obj = new ATM();
-            obj.AtmMenu();
+            obj.AtmMenu(); // Calling AtmMenu
 
         }
 }
@@ -15,6 +16,7 @@ public class task3 {
 class ATM {
     float AmtBalance = 10000.0f;
 
+    // Presenting ATM menu where we will have the all the functions
     public void AtmMenu() {
 
         // Displaying the menu
@@ -51,6 +53,7 @@ class ATM {
          }
     }
 
+    // Defining Check Balance
     public void CheckBal() {
         System.out.println("----------------------------------------");
         System.out.println("  Available Funds: " + AmtBalance);
@@ -59,6 +62,7 @@ class ATM {
         AtmMenu();
     }
 
+    // Defining Withdraw
     public void Withdraw() {
         System.out.println("Available Funds " + AmtBalance);
         System.out.print("Please enter the amount you want to withdraw: ");
@@ -82,6 +86,7 @@ class ATM {
 
     }
 
+    // Defining Deposit
     public void Deposit() {
         System.out.print("PLease enter the amount need to be Deposit: ");
         Scanner Input = new Scanner(System.in);
